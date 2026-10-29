@@ -1,4 +1,4 @@
-# weather-app-tracker-
+# weather-app-tracker
 A simple weather web application that lets users search for any city
 and view the current temperature, humidity, wind speed and a 5-day
 forecast.
@@ -6,7 +6,7 @@ forecast.
 Built for the SWD 417 assignment.
 
 ## Live Demo
-https://cryopod24-gif.github.io/weather-app-tracker-
+https://cryopod24-gif.github.io/weather-app-tracker
 
 ## Features
 - Search weather by city name
