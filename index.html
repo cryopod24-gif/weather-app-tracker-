@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Weather App</title><style>*{box-sizing:border-box}body{font-family:sans-serif;max-width:520px;margin:20px auto;padding:0 14px;text-align:center}input,select,button{padding:10px;margin:4px;font-size:16px;border-radius:8px;border:1px solid #888}button{background:#2563eb;color:#fff;border:0}</style>
+<h1>Weather App</h1><input id="q" placeholder="Enter city"><button onclick="go()">Search</button>
+<div id="o"></div>
+<script>
+async function go(){
+ o.textContent='Loading...';
+ try{
+  const g=await(await fetch('https://geocoding-api.open-meteo.com/v1/search?count=1&name='+encodeURIComponent(q.value))).json();
+  if(!g.results){o.textContent='City not found';return}
+  const c=g.results[0];
+  const w=await(await fetch('https://api.open-meteo.com/v1/forecast?latitude='+c.latitude+'&longitude='+c.longitude+'&current=temperature_2m,relative_humidity_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=auto')).json();
+  let h='<h2>'+c.name+', '+c.country+'</h2><h1>'+w.current.temperature_2m+'&deg;C</h1><p>Humidity: '+w.current.relative_humidity_2m+'% | Wind: '+w.current.wind_speed_10m+' km/h</p><h3>Forecast</h3>';
+  for(let i=0;i<5;i++)h+='<p>'+w.daily.time[i]+': '+w.daily.temperature_2m_min[i]+'&deg; - '+w.daily.temperature_2m_max[i]+'&deg;C</p>';
+  o.innerHTML=h;
+ }catch(e){o.textContent='Network error'}
+}
+</script>
