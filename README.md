@@ -6,7 +6,7 @@ forecast.
 Built for the SWD 417 assignment.
 
 ## Live Demo
-https://cryopod24-gif.github.io/weather-app-tracker
+https://cryopod24-gif.github.io/weather-app-tracker-
 
 ## Features
 - Search weather by city name
